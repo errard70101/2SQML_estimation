@@ -4,7 +4,7 @@ warning off all;
 %% Select hyperparameters
 observations = [50^2, 100^2, 150^2];
 % number of simulation
-m = 100;
+m = 10;
 
 %%
 
@@ -25,11 +25,11 @@ gmm = [0.3, 0.6, 0.9];
 MU = [0, 0, 0];
 
 if fix == 1 && egger_fix == 0
-    fe = random_fix_effect(n_obs(l)); % to construct import and export fix effect dummies
+    fe = random_fix_effect(n_obs); % to construct import and export fix effect dummies
     % exclude the first import and export fix effect dummies to prevent
     % multicollinearity.
     fem = fe;
-    fem(:, [1, 1+sqrt(n_obs(l))]) = [];
+    fem(:, [1, 1+sqrt(n_obs)]) = [];
     beta1 = [true_b, ...
         (rand([1, size(fem, 2)])-0.5).*randn([1, size(fem, 2)])*0.5 ]';
     delta2 = [true_d2, ...
