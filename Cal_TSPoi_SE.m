@@ -1,8 +1,11 @@
-function[l, g, H] = TSPoi_mle(starting_value, delta2, delta3, x, z, y1, y2, y3, gmm)
-% This script calculates the log-likelihood, gradients, and hessians of the
-% second step Poisson estimation.
+function[l, g, H] = Cal_TSPoi_SE(starting_value, delta2, delta3, ...
+    x, z, y1, y2, y3, gmm)
+% This script calculates the robust standard error of the two-stage Poisson 
+% maximum likelihood estimation.
 
 % y1, y2, and y3 are N x 1 vectors.
+% x is N x (P - 2) matrix.
+% beta1 is 1 x (P - 2) vector.
 
 % First-step parameters:
 % delta2 and delta3 are J x 1 vector.
@@ -25,7 +28,7 @@ MU_2 = zeros(1, 2);
 X_2 = [w2 + q2.*mu2, w3 + q3.*mu3];
 X = [w2, w3];
 
-lambda = exp(x*beta1);
+lambda = exp(x*beta1);                     % N x 1 vector
 Phi_mu = y2.*y3.*mvncdf(X_2, MU_2, SIGMA_2) ...
     + y2.*(1 - y3).*mvncdf(X_2, MU_2, SIGMA_2n) ...
     + (1 - y2).*y3.*mvncdf(X_2, MU_2, SIGMA_2n) ...
@@ -34,6 +37,14 @@ Phi = y2.*y3.*mvncdf(X, MU_2, SIGMA_2) ...
     + y2.*(1 - y3).*mvncdf(X, MU_2, SIGMA_2n) ...
     + (1 - y2).*y3.*mvncdf(X, MU_2, SIGMA_2n) ...
     + (1 - y2).*(1 - y3).*mvncdf(X, MU_2, SIGMA_2);
+phi_mu = y2.*y3.*mvnpdf(X_2, MU_2, SIGMA_2) ...
+    + y2.*(1 - y3).*mvnpdf(X_2, MU_2, SIGMA_2n) ...
+    + (1 - y2).*y3.*mvnpdf(X_2, MU_2, SIGMA_2n) ...
+    + (1 - y2).*(1 - y3).*mvnpdf(X_2, MU_2, SIGMA_2);
+phi = y2.*y3.*mvnpdf(X, MU_2, SIGMA_2) ...
+    + y2.*(1 - y3).*mvnpdf(X, MU_2, SIGMA_2n) ...
+    + (1 - y2).*y3.*mvnpdf(X, MU_2, SIGMA_2n) ...
+    + (1 - y2).*(1 - y3).*mvnpdf(X, MU_2, SIGMA_2);
 Psi = Phi_mu./Phi;
 lambda_s = lambda.*Psi;
 
@@ -83,5 +94,22 @@ if nargout > 2
     H = -[hbb, hbm2', hbm3'; hbm2, hm2m2, hm2m3; ...
         hbm3, hm2m3, hm3m3];
 end
+
+
+
+
+dl_dbeta_ddelta2 = -(x.*lambda.* (normpdf(w2 + q2.*mu2).* ...
+    normcdf( (w3 + q3.*mu3 - gmms.*(w2 + q2.*mu2))./sqrt(1 - gmms.^2) ) ...
+    - Psi.*normpdf(w2).*normcdf((w3 - gmms.*w2)./sqrt(1 - gmms.^2))).*q2./Phi)'*z;
+
+dl_dbeta_ddelta3 = -(x.*lambda.* (normpdf(w3 + q3.*mu3).* ...
+    normcdf( (w2 + q2.*mu2 - gmms.*(w3 + q3.*mu3))./sqrt(1 - gmms.^2) ) ...
+    - Psi.*normpdf(w3).*normcdf((w2 - gmms.*w3)./sqrt(1 - gmms.^2))).*q3./Phi)'*z;
+
+dl_dbeta_dgmm = - x.*lambda.*q2.*q3.*Psi.*(phi_mu./Phi_mu - phi./Phi);
+
+
+
+
 
 end
