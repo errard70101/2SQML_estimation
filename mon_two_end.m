@@ -2,7 +2,7 @@ clear all;
 clc;
 warning off all;
 %% Select hyperparameters
-observations = 150^2; %[50^2, 100^2, 150^2];
+observations = 100^2; %[50^2, 100^2, 150^2];
 % number of simulation
 m = 1000;
 
@@ -19,9 +19,9 @@ true_b = [0.5, 0, 1, -1];
 true_d2 = [0, 0.5, -1, 1];
 true_d3 = [0, 0.5, 1, -1];
 sigma = 1;
-rho1 = 0.3; %[0.3, 0.6, 0.9];
-rho2 = 0.3; %[0.3, 0.6, 0.9];
-gmm = 0.3; %[0.3, 0.6, 0.9];
+rho1 = 0.9; %[0.3, 0.6, 0.9];
+rho2 = 0.9; %[0.3, 0.6, 0.9];
+gmm = 0.9; %[0.3, 0.6, 0.9];
 MU = [0, 0, 0];
 
 if fix == 1 && egger_fix == 0
@@ -210,7 +210,7 @@ fprintf(fileID,strcat('Elapsed time is ', num2str(toc), ' seconds.'));
 fclose(fileID);
 
 %% Save Monte Carlo Data
-filename = strcat('test_', date(), '_', num2str(n_obs), '.mat');
+filename = strcat('test_', date(), '_', num2str(n_obs), '_', num2str(gmm), '.mat');
 save(filename, 'gamma2', 'gamma3', 'b1', 'b2', 'SE1', 'SE2')
 
 end

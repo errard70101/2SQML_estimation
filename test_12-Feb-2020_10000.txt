@@ -1,0 +1,12 @@
+\begin{table} 
+ \centering 
+\caption{Simulation Result $\# observations =  10000 $} 
+\scalebox{0.7}{ 
+ \begin{tabular}{cccccccc} 
+\toprule 
+\begin{table} 
+ \centering 
+\caption{Simulation Result $\# observations =  10000 $} 
+\scalebox{0.7}{ 
+ \begin{tabular}{cccccccc} 
+\toprule 
