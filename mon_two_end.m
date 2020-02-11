@@ -2,9 +2,9 @@ clear all;
 clc;
 warning off all;
 %% Select hyperparameters
-observations = [50^2, 100^2, 150^2];
+observations = 150^2; %[50^2, 100^2, 150^2];
 % number of simulation
-m = 10;
+m = 1000;
 
 %%
 
@@ -19,9 +19,9 @@ true_b = [0.5, 0, 1, -1];
 true_d2 = [0, 0.5, -1, 1];
 true_d3 = [0, 0.5, 1, -1];
 sigma = 1;
-rho1 = [0.3, 0.6, 0.9];
-rho2 = [0.3, 0.6, 0.9];
-gmm = [0.3, 0.6, 0.9];
+rho1 = 0.3; %[0.3, 0.6, 0.9];
+rho2 = 0.3; %[0.3, 0.6, 0.9];
+gmm = 0.3; %[0.3, 0.6, 0.9];
 MU = [0, 0, 0];
 
 if fix == 1 && egger_fix == 0
@@ -77,6 +77,8 @@ gamma2 = zeros(m, length(delta2));
 gamma3 = zeros(m, length(delta3));
 b1 = zeros(m, length(beta1));
 b2 = zeros(m, length(beta1)+3);
+SE1 = zeros(m, length(beta1)+2);
+SE2 = zeros(m, length(beta1)+2);
 
 % store bias of estimates
 dta2_error = zeros(m, size_d2*n_rho);
@@ -131,13 +133,20 @@ for r = 1:n_rho
     tried = 0;
     textprogressbar('Calculating outputs: ');
     for i = 1:m
-        [gamma2_temp, gamma3_temp, b1_temp, b2_temp, tried] = ...
+        [gamma2_temp, gamma3_temp, b1_temp, b2_temp, tried, V1, V2] = ...
             mon_two_end_pross(n_obs, beta1, delta2, delta3, MU, SIGMA, ...
             fem, fix, tried); % default egger_fix = 0
         gamma2(i, :) = gamma2_temp';
         gamma3(i, :) = gamma3_temp';
-        b1(i, :) = b1_temp;
-        b2(i, :) = b2_temp;
+        b1(i, :) = b1_temp; % Poisson estimate
+        b2(i, :) = b2_temp; % Two-stage Poisson estimate
+        
+        se1 = sqrt(diag(V1));
+        se2 = sqrt(diag(V2));
+        
+        SE1(i, :) = se1;
+        SE2(i, :) = se2;
+        
         textprogressbar(i*100/m);
     end
     textprogressbar('Done!');
@@ -202,6 +211,6 @@ fclose(fileID);
 
 %% Save Monte Carlo Data
 filename = strcat('test_', date(), '_', num2str(n_obs), '.mat');
-save(filename, 'gamma2', 'gamma3', 'b1', 'b2')
+save(filename, 'gamma2', 'gamma3', 'b1', 'b2', 'SE1', 'SE2')
 
 end

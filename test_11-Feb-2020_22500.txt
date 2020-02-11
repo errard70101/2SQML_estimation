@@ -1,0 +1,61 @@
+\begin{table} 
+ \centering 
+\caption{Simulation Result $\# observations =  22500 $} 
+\scalebox{0.7}{ 
+ \begin{tabular}{cccccccc} 
+\toprule 
+Model 1 & \multicolumn{7}{c}{$\rho_1 = 0.3$, $\rho_2 = 0.3$, $\gamma = 0.3$} \\ 
+& $Constant$ & $\delta_{j1}$ & $\delta_{j2}$ & $\delta_{3j}$ & & & \\ 
+\midrule 
+Probit 1 & 	  -0.0132 & 	  -0.0121 & 	  -0.0016 & 	   0.0197 & & & \\ 	 
+($1_{st}$ stage) & 		 (  0.0132) & 	 (  0.0121) & 	 (  0.0016) & 	 (  0.0197) & & & \\ 	 
+Probit 2 & 	   0.2867 & 	  -0.0119 & 	  -0.0187 & 	  -0.0045 & & & \\ 	 
+($1_{st}$ stage) & 		 (  0.2867) & 	 (  0.0119) & 	 (  0.0187) & 	 (  0.0045) & & & \\ 	 
+[1em] 
+& $Constant$ & $\beta_{1}$ & $\beta_{2}$ & $\beta_{3}$ & $\sigma\rho_1$ & $\sigma\rho_2$ & $\gamma$ \\ 
+\midrule 
+Poisson & 	  -0.0754 & 	   0.0001 & 	   0.0118 & 	   0.1092 & 	  -0.0263 & 	  -0.0699 & 	  -0.0041 \\ 	 
+($2_{nd}$ stage) & 		 (  0.0754) & 	 (  0.0001) & 	 (  0.0118) & 	 (  0.1092) & 	 (  0.0263) & 	 (  0.0699) & 	 (  0.0041) \\ 	 
+Simple Poisson & 		  -0.4960 & 	  -0.1217 & 	   0.3973 & 	   0.4281 & & & \\ 	 
+& 		 (  0.4960) & 	 (  0.1217) & 	 (  0.3973) & 	 (  0.4281) & & & \\ 	 
+\midrule 
+Model 2 & \multicolumn{7}{c}{$\rho_1 = 0.6$, $\rho_2 = 0.6$, $\gamma = 0.6$} \\ 
+& $Constant$ & $\delta_{j1}$ & $\delta_{j2}$ & $\delta_{3j}$ & & & \\ 
+\midrule 
+Probit 1 & 	  -0.0082 & 	   0.0770 & 	  -0.0234 & 	   0.0253 & & & \\ 	 
+($1_{st}$ stage) & 		 (  0.0082) & 	 (  0.0770) & 	 (  0.0234) & 	 (  0.0253) & & & \\ 	 
+Probit 2 & 	  -0.0160 & 	   0.0169 & 	   0.0292 & 	   0.0224 & & & \\ 	 
+($1_{st}$ stage) & 		 (  0.0160) & 	 (  0.0169) & 	 (  0.0292) & 	 (  0.0224) & & & \\ 	 
+[1em] 
+& $Constant$ & $\beta_{1}$ & $\beta_{2}$ & $\beta_{3}$ & $\sigma\rho_1$ & $\sigma\rho_2$ & $\gamma$ \\ 
+\midrule 
+Poisson & 	  -0.0842 & 	  -0.0579 & 	   0.1668 & 	   0.1174 & 	  -0.1163 & 	  -0.0980 & 	   0.0151 \\ 	 
+($2_{nd}$ stage) & 		 (  0.0842) & 	 (  0.0579) & 	 (  0.1668) & 	 (  0.1174) & 	 (  0.1163) & 	 (  0.0980) & 	 (  0.0151) \\ 	 
+Simple Poisson & 		  -0.7857 & 	  -0.2839 & 	   0.7377 & 	   0.7462 & & & \\ 	 
+& 		 (  0.7857) & 	 (  0.2839) & 	 (  0.7377) & 	 (  0.7462) & & & \\ 	 
+\midrule 
+Model 3 & \multicolumn{7}{c}{$\rho_1 = 0.9$, $\rho_2 = 0.9$, $\gamma = 0.9$} \\ 
+& $Constant$ & $\delta_{j1}$ & $\delta_{j2}$ & $\delta_{3j}$ & & & \\ 
+\midrule 
+Probit 1 & 	   0.1023 & 	   0.0127 & 	   0.0042 & 	   0.0158 & & & \\ 	 
+($1_{st}$ stage) & 		 (  0.1023) & 	 (  0.0127) & 	 (  0.0042) & 	 (  0.0158) & & & \\ 	 
+Probit 2 & 	   0.1709 & 	  -0.0091 & 	  -0.0191 & 	  -0.0012 & & & \\ 	 
+($1_{st}$ stage) & 		 (  0.1709) & 	 (  0.0091) & 	 (  0.0191) & 	 (  0.0012) & & & \\ 	 
+[1em] 
+& $Constant$ & $\beta_{1}$ & $\beta_{2}$ & $\beta_{3}$ & $\sigma\rho_1$ & $\sigma\rho_2$ & $\gamma$ \\ 
+\midrule 
+Poisson & 	  -0.1390 & 	  -0.0606 & 	   0.1470 & 	   0.1402 & 	  -0.1305 & 	  -0.1196 & 	   0.0035 \\ 	 
+($2_{nd}$ stage) & 		 (  0.1390) & 	 (  0.0606) & 	 (  0.1470) & 	 (  0.1402) & 	 (  0.1305) & 	 (  0.1196) & 	 (  0.0035) \\ 	 
+Simple Poisson & 		  -1.2546 & 	  -0.3373 & 	   0.9384 & 	   1.0286 & & & \\ 	 
+& 		 (  1.2546) & 	 (  0.3373) & 	 (  0.9384) & 	 (  1.0286) & & & \\ 	 
+\midrule 
+\bottomrule 
+\multicolumn{8}{l}{\footnotesize Top value in each cell is the mean error (based on 1,000 repetitions). RMSE in parentheses.}\\ 
+\end{tabular}} 
+ \end{table} 
+Elapsed time is120.0543 seconds.\begin{table} 
+ \centering 
+\caption{Simulation Result $\# observations =  22500 $} 
+\scalebox{0.7}{ 
+ \begin{tabular}{cccccccc} 
+\toprule 

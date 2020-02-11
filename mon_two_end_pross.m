@@ -1,4 +1,4 @@
-function [gamma2, gamma3, b1, b2, tried] = mon_two_end_pross(n_obs, beta1, ...
+function [gamma2, gamma3, b1, b2, tried, V1, V2] = mon_two_end_pross(n_obs, beta1, ...
     delta2, delta3, MU, SIGMA, fem, fix, tried)
 % This function is to generate random observations and estimate two probit
 % models, and use the results as first step estimation to conduct a second
@@ -146,7 +146,10 @@ end
 
 exit_TSM = exitflag_biv * exitflag_poi;
 
+[V1, V2] = Cal_TSPoi_SE(b2, delta2, delta3, x, z, y1, y2, y3, gmm);
+
 b2 = [b2; gmm];
+
 catch
     %disp('Error, estimate again.')
 end
