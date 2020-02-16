@@ -65,3 +65,23 @@ Elapsed time is36.0687 seconds.\begin{table}
 \scalebox{0.7}{ 
  \begin{tabular}{cccccccc} 
 \toprule 
+Model 1 & \multicolumn{7}{c}{$\rho_1 = 0.3$, $\rho_2 = 0.3$, $\gamma = 0.3$} \\ 
+& $Constant$ & $\delta_{j1}$ & $\delta_{j2}$ & $\delta_{3j}$ & & & \\ 
+\midrule 
+Probit 1 & 	  -0.0113 & 	   0.0096 & 	  -0.0171 & 	   0.0197 & & & \\ 	 
+($1_{st}$ stage) & 		 (  0.1852) & 	 (  0.0472) & 	 (  0.0514) & 	 (  0.0512) & & & \\ 	 
+Probit 2 & 	  -0.0077 & 	   0.0090 & 	   0.0171 & 	  -0.0166 & & & \\ 	 
+($1_{st}$ stage) & 		 (  0.1903) & 	 (  0.0473) & 	 (  0.0502) & 	 (  0.0503) & & & \\ 	 
+[1em] 
+& $Constant$ & $\beta_{1}$ & $\beta_{2}$ & $\beta_{3}$ & $\sigma\rho_1$ & $\sigma\rho_2$ & $\gamma$ \\ 
+\midrule 
+Poisson & 	  -0.1655 & 	  -0.0596 & 	   0.1590 & 	   0.1544 & 	  -0.1133 & 	  -0.1129 & 	   0.0044 \\ 	 
+($2_{nd}$ stage) & 		 (  0.4661) & 	 (  0.1527) & 	 (  0.3976) & 	 (  0.3954) & 	 (  0.2820) & 	 (  0.2811) & 	 (  0.0167) \\ 	 
+Simple Poisson & 		  -0.4769 & 	  -0.1520 & 	   0.4187 & 	   0.4191 & & & \\ 	 
+& 		 (  0.5186) & 	 (  0.1613) & 	 (  0.4196) & 	 (  0.4203) & & & \\ 	 
+\midrule 
+\bottomrule 
+\multicolumn{8}{l}{\footnotesize Top value in each cell is the mean error (based on 1,000 repetitions). RMSE in parentheses.}\\ 
+\end{tabular}} 
+ \end{table} 
+Elapsed time is48792.3867 seconds.

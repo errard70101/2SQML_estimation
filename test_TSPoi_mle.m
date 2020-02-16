@@ -39,7 +39,7 @@ if constraint_optimization == 0
     starting_value, options, delta2, delta3, x, z, y1, y2, y3, gmm);
 else
     options = optimoptions('fmincon', 'Algorithm', 'trust-region-reflective',...
-        'CheckGradients', true, 'Diagnostics', 'off', ...
+        'CheckGradients', false, 'Diagnostics', 'off', ...
         'SpecifyObjectiveGradient', true, 'Display', 'off', ...
         'MaxIterations', 1000, 'OptimalityTolerance', 1e-10, ...
         'HessianFcn', 'objective', 'FunctionTolerance', 1e-10);
@@ -51,4 +51,13 @@ else
 end
 
 true_params = [beta1 + [sigma^2/2;zeros(3, 1)]; rho1; rho2];
-disp([true_params est])
+
+[V1, V2] = Cal_TSPoi_SE(est, delta2, delta3, ...
+    x, z, y1, y2, y3, gmm);
+
+SE1 = sqrt(diag(V1));
+SE2 = sqrt(diag(V2));
+
+disp([true_params, est, SE1, SE2])
+
+writematrix([y1, x], 'test_TSPoi_mle.csv')

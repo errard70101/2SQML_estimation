@@ -2,16 +2,16 @@ clear all;
 clc;
 warning off all;
 %% Select hyperparameters
-observations = 100^2; %[50^2, 100^2, 150^2];
+observations = 50^2; %[50^2, 100^2, 150^2];
 % number of simulation
-m = 1000;
+m = 5000;
 
 %%
 
 for l = 1:size(observations, 2)
     disp(strcat('n_obs =', num2str(observations(l), '%10.0f')))
 %%
-fix = 1;
+fix = 0;
 egger_fix =0;
 n_obs = observations(l); % number of observations
 % generate true parameters
@@ -19,9 +19,9 @@ true_b = [0.5, 0, 1, -1];
 true_d2 = [0, 0.5, -1, 1];
 true_d3 = [0, 0.5, 1, -1];
 sigma = 1;
-rho1 = 0.9; %[0.3, 0.6, 0.9];
-rho2 = 0.9; %[0.3, 0.6, 0.9];
-gmm = 0.9; %[0.3, 0.6, 0.9];
+rho1 = 0.6; %[0.3, 0.6, 0.9];
+rho2 = 0.6; %[0.3, 0.6, 0.9];
+gmm = 0.6; %[0.3, 0.6, 0.9];
 MU = [0, 0, 0];
 
 if fix == 1 && egger_fix == 0
