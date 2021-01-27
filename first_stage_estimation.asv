@@ -19,7 +19,6 @@ Dta.one_wto = Dta.gatt_d;
 Dta.both_wto = Dta.gatt_o .* Dta.gatt_d;
 Dta.Y = Dta.exports_x + Dta.intra_x;
 Dta.E = Dta.imports_m + Dta.intra_m;
-Dta.bothPB = Dta.PTA.*Dta.BIT;
 
 %%
 Dta.x_ALB = [];
@@ -93,7 +92,7 @@ wfe = [w fem]; % all the exogenous variables
 
 zfe = [z, fem];
 
-zex = [Dta.PTA, Dta.BIT, Dta.bothPB, z, fem];
+zex = [Dta.PTA, Dta.BIT, z, fem];
 
 %% Bivariate Probit
 
@@ -248,14 +247,11 @@ disp([b3([1:10, end-1, end]), TSE1([1:10, end-1, end]), TSE2([1:10, end-1, end])
 save('estimation_result_20210127.mat', 'b3')
 
 %%
-R = [1, 1, 1];
-thetta = b3(1:3);
-VV = V2(1:3, 1:3);
+R = [0, 1];
+thetta = b3(1:2);
+VV = V2(1:2, 1:2);
 
-Wald = (R*thetta - 0)'/(R*V2(1:3, 1:3)*R')*(R*thetta - 0);
+Wald = (R*thetta - 0)'/(R*V2(1:2, 1:2)*R')*(R*thetta - 0);
 
 disp('The Wald statistic is')
 disp(Wald)
-
-[h, pValue, stat, cValue] = waldtest(b3(1) + b3(2), R, ...
-    [V1(1, 1), V1(1, 2); V1(2, 1), V1(2, 2)], 0.05)
